@@ -67,8 +67,9 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void BeginTransission()
+    public IEnumerator BeginTransission()
     {
+        yield return new WaitForSeconds(2f);
         SceneManager.LoadScene("Transition");
     }
 
@@ -134,7 +135,7 @@ public class GameManager : MonoBehaviour
         score++;
         Debug.Log("Won");
         //musicPlayer.PlayOneShot(clips[0]);
-        BeginTransission();
+        StartCoroutine(BeginTransission());
     }
 
     public void Lost()
@@ -144,7 +145,7 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("Lost");
             //musicPlayer.PlayOneShot(clips[1]);
-            BeginTransission();
+            StartCoroutine(BeginTransission());
         }
         else
         {
