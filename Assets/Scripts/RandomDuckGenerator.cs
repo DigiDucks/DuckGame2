@@ -8,6 +8,9 @@ public class RandomDuckGenerator : MonoBehaviour
     Sprite[] ducks;
 
     [SerializeField]
+    int duckNumber = -1;
+
+    [SerializeField]
     bool randomX = false;
 
     SpriteRenderer _rend;
@@ -30,18 +33,26 @@ public class RandomDuckGenerator : MonoBehaviour
             ducks[x] = (Sprite)loadedIcons[x];
         }
     }
-    public void GenerateDuck()
+    public int GenerateDuck()
     {
-        _rend.sprite = ducks[Random.Range(0, ducks.Length-1)];
+       int index = Random.Range(0, ducks.Length - 1);
+        _rend.sprite = ducks[index];
         if(randomX)
         {
             RandomDirection();
         }
+        duckNumber = index;
+        return index;
     }
 
     void RandomDirection()
     {
         if (Random.Range(0, 4) >= 2)
             _rend.flipX = !_rend.flipX;
+    }
+
+    public int GetWhichDuck()
+    {
+        return duckNumber;
     }
 }
