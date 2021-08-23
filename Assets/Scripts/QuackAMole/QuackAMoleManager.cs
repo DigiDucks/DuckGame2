@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class QuackAMoleManager : MonoBehaviour
 {
-    static int numbHoles = 5;
+    static int numbHoles = 8;
 
+    GameManager manager;
 
-    int goal = 3;
+    float timer = 15f;
+
+    int goal = 5;
     int whacked = 0;
 
     bool won = false;
+
+    float multiplier = 1f;
 
 
     MoleHole[] holes = new MoleHole[numbHoles];
@@ -20,13 +25,35 @@ public class QuackAMoleManager : MonoBehaviour
     int difficulty = 1; //debug = 1, Easy mode =1 , med = 2, hard =3 
     int pattern = 0;
 
-    int[] easyMode = { 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 4, 4 }; //  
+    int[] easyMode = { 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 4, 4 };
+    int[] medMode = { 1, 1, 1, 3, 3, 3, 2, 2, 2, 2, 2, 3, 3, 3, 4, 4, 4, 4 };
+    int[] hardMode = { 1, 1, 3, 3, 3, 3, 2, 2, 2, 2, 2, 3, 3, 3, 4, 4, 4, 4 };
+
 
 
     // Start is called before the first frame update
     void Start()
     {
+        manager = GameManager.instance;
         holes = GameObject.FindObjectsOfType<MoleHole>();
+
+        switch (manager.difficulty)
+        {
+            case 0:
+            case 1:
+                multiplier = 1f;
+                timer = 20f;
+                break;
+            case 2:
+                multiplier = 1.25f;
+                timer = 18f;
+                break;
+            case 3:
+                multiplier = 1.75f;
+                timer = 15f;
+                break;
+
+        }
     }
 
     // Update is called once per frame
@@ -45,19 +72,34 @@ public class QuackAMoleManager : MonoBehaviour
                 SwitchPattern();
             }
         }
-        
+
+        if (timer > 0)
+        {
+            timer -= Time.deltaTime;
+        }
+        else
+        {
+            manager.Lost();
+        }
+
     }
 
 
     void SwitchDifficulty()
     {
-        switch (difficulty)
+        switch (manager.difficulty)
         {
             case 0:
                 pattern = 4;
                 break;
             case 1:
-                pattern = easyMode[Random.Range(0, easyMode.Length - 1)];
+                pattern = easyMode[Random.Range(0, easyMode.Length)];
+                break;
+            case 2:
+                pattern = medMode[Random.Range(0, medMode.Length)];
+                break;
+            case 3:
+                pattern = hardMode[Random.Range(0, hardMode.Length)];
                 break;
         }
     }
@@ -110,7 +152,7 @@ public class QuackAMoleManager : MonoBehaviour
         {
             pop = Random.Range(0, numbHoles);
         }
-        holes[Random.Range(0, numbHoles)].PopUp(speed);
+        holes[Random.Range(0, numbHoles)].PopUp(speed * multiplier);
     }
     void PopAll()
     {

@@ -37,7 +37,7 @@ public class BossScript : MonoBehaviour
 		manager = GameManager.instance;
 		audioManager = AudioManager.instance;
 
-        switch (manager.level)
+        switch (manager.difficulty)
         {
 			case 1: speedMultiplier = 1f;
 				break;
@@ -72,16 +72,15 @@ public class BossScript : MonoBehaviour
 	void Win()
 	{
 
-		if (manager.level > 2)
+		if (manager.difficulty > 2)
 		{
-			manager.PauseTimer();
-			SceneManager.LoadScene(2);
+			SceneManager.LoadScene("Win");
 		}
         else
         {
 			manager.lives++;
-			manager.goal += 6;
-			manager.level++;
+			manager.pointGoal += 6;
+			manager.difficulty++;
 			manager.Won();
         }
 	}

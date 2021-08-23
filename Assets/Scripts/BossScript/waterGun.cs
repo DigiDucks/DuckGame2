@@ -13,7 +13,7 @@ public class waterGun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		if(Input.GetMouseButton(0))
+		if(Input.GetMouseButton(0) || Input.GetKey(KeyCode.Space))
 		{
 			if (timer <= 0)
 			{

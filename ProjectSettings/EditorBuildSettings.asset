@@ -18,9 +18,24 @@ EditorBuildSettings:
     path: Assets/Scenes/MainScenes/GameOver.unity
     guid: 9daa7b8b08544dc4a80e84c12cfa89c3
   - enabled: 1
+    path: Assets/Scenes/MainScenes/BossScene.unity
+    guid: 67e6f4db5adc531409c7f7c8fc310527
+  - enabled: 1
     path: Assets/Scenes/MiniGames/QuackAMole.unity
     guid: 7dd0268439224d64e85d071c539391fd
   - enabled: 1
     path: Assets/Scenes/MiniGames/DuckDating.unity
     guid: 27b83ae18e2419744a6ce8d25704be82
+  - enabled: 1
+    path: Assets/Scenes/MiniGames/HideAndSeek.unity
+    guid: 6c9bf5e8b35f4ec4db3a1380e24d8ed6
+  - enabled: 1
+    path: Assets/Scenes/MiniGames/Standby.unity
+    guid: f6f506e58295cb546bcb8eae55067d88
+  - enabled: 1
+    path: Assets/Scenes/MiniGames/DuckBomb.unity
+    guid: 02f3e607512cec643b3d624d817ef579
+  - enabled: 1
+    path: Assets/Scenes/MiniGames/DuckLineUpShot.unity
+    guid: c0763dc420ef3b54c816ea18e0f35137
   m_configObjects: {}
