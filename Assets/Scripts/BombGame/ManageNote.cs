@@ -27,10 +27,10 @@ public class ManageNote : MonoBehaviour
     {
         bomb = FindObjectOfType<WireManager>();
         generateCodes();
-        for(int i = 0; i < 10; i++)
-        {
-            Debug.Log(codes[i].ToString());
-        }
+        //for(int i = 0; i < 10; i++)
+        //{
+        //    Debug.Log(codes[i].ToString());
+        //}
         assignCodes();
         assignInstructions();
         correctChoice();
@@ -128,9 +128,9 @@ public class ManageNote : MonoBehaviour
 
         for(int i = 0; i < 10; i++)
         {
-            Debug.Log(instructionText[randomNumber].text);
-            Debug.Log(instructions[i]);
-            Debug.Log(string.Compare(instructionText[randomNumber].text, instructions[i]) == 0);
+            //Debug.Log(instructionText[randomNumber].text);
+            //Debug.Log(instructions[i]);
+            //Debug.Log(string.Compare(instructionText[randomNumber].text, instructions[i]) == 0);
 
             if(string.Compare(instructionText[randomNumber].text, instructions[i]) == 0)
             {

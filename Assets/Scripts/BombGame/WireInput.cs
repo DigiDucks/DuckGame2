@@ -32,10 +32,12 @@ public class WireInput : MonoBehaviour
             Debug.Log(wireColor);
             if(manager.GetCorrectWire() == wireNumber)
             {
+                GameManager.instance.Won();
                 Debug.Log("Correct");
             }
             else
             {
+                GameManager.instance.Lost();
                 Debug.Log("Wrong");
             }
         }

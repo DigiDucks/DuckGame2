@@ -58,11 +58,12 @@ public class GameMaster : MonoBehaviour
 
     void LoseGame()
 	{
-
+        GameManager.instance.Lost();
 	}
 
     void WinGame()
 	{
+        GameManager.instance.Won();
         print("WIN");
         DidWin = true;
 	}

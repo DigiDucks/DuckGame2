@@ -31,7 +31,16 @@ public class DatingGameManager : GameTemplate
 
     private void Start()
     {
-         timer = 15f;              
+         switch(GameManager.instance.difficulty)
+        {
+            case 1: timer = 15f;
+                break;
+            case 2: timer = 11f;
+                break;
+            case 3: timer = 7f;
+                break;
+        }
+        Begin();
     }
 
 
@@ -64,7 +73,7 @@ public class DatingGameManager : GameTemplate
             if (timer > 0)
             {
                 timer -= Time.deltaTime;
-                timerText.text = Convert.ToInt32(timer).ToString();
+                //timerText.text = Convert.ToInt32(timer).ToString();
             }
             else
             {

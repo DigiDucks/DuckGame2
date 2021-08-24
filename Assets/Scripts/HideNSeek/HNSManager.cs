@@ -12,6 +12,8 @@ public class HNSManager : MonoBehaviour
     [SerializeField]
     RandomDuckGenerator[] ducksInScene;
 
+    DuckOrbi[] spinners;
+
     [SerializeField]
     int duck2Find = -1;
 
@@ -20,6 +22,22 @@ public class HNSManager : MonoBehaviour
     {
         LoadDucks();
         ducksInScene = FindObjectsOfType<RandomDuckGenerator>();
+        if (GameManager.instance.difficulty > 1)
+        {
+            spinners = FindObjectsOfType<DuckOrbi>();
+            int randNum = Random.Range(0, spinners.Length);
+            for(int i = 0; i<= randNum; ++i)
+            {
+                spinners[Random.Range(0, spinners.Length)].rotateSpeed = Random.Range(10f, 50f);
+            }
+            if(GameManager.instance.difficulty >2)
+            {
+                for (int i = 0; i <= randNum; ++i)
+                {
+                    spinners[Random.Range(0, spinners.Length)].rotateSpeed = Random.Range(20f, 60f);
+                }
+            }
+        }
 
         duck2Find = ducksInScene[Random.Range(0, ducksInScene.Length)].GetWhichDuck();
         if(FindDuckSprite)
@@ -40,6 +58,7 @@ public class HNSManager : MonoBehaviour
         {
             Debug.Log("Win");
             //Win Game
+            GameManager.instance.Won();
         }
     }
 
